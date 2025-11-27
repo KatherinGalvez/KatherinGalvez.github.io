@@ -15,12 +15,50 @@
         </header>
 
         <div class="search-container">
+            <!-- Dropdown de marcas -->
+            <div class="dropdown-container">
+                <button class="dropdown-button" onclick="toggleDropdown()">
+                    <span id="selectedBrand">Seleccionar marca</span> ▼
+                </button>
+                <div id="brandDropdown" class="dropdown-content">
+                    <div class="dropdown-item" onclick="openTab('nyx','NYX')">NYX</div>
+                     <div class="dropdown-item" onclick="openTab('maybelline','Maybelline')">Maybelline</div>
+                    <div class="dropdown-item" onclick="openTab('loreal','LOréal')">L'Oréal</div>
+                    <div class="dropdown-item" onclick="openTab('elf','e.l.f.')">e.l.f.</div>
+                    <!-- resto de marcas -->
+                    <div class="dropdown-item" onclick="openTab('centella','Centella')">CENTELLA skin 1004</div>
+                    <div class="dropdown-item" onclick="openTab('cerave','CeraVe')">CeraVe</div>
+                    <div class="dropdown-item" onclick="openTab('morphe','Morphe')">MORPHE</div>
+                    <div class="dropdown-item" onclick="openTab('revlon','Revlon')">Revlon</div>
+                    <div class="dropdown-item" onclick="openTab('medicube','Medicube')">medicube</div>
+                    <div class="dropdown-item" onclick="openTab('real','Real Techniqes')">Real Techniqes</div>
+                    <div class="dropdown-item" onclick="openTab('sephora','Sephora')">SEPHORA</div>
+                    <div class="dropdown-item" onclick="openTab('rare','Rare Beauty')">Rare Beauty</div>
+                    <div class="dropdown-item" onclick="openTab('huda','Huda')">HUDA</div>
+                    <div class="dropdown-item" onclick="openTab('fenty','Fenty')">Fenty</div>
+                    <div class="dropdown-item" onclick="openTab('patrick','Patrick')">PATRICK TA</div>
+                    <div class="dropdown-item" onclick="openTab('nars','Nars')">NARS</div>
+                    <div class="dropdown-item" onclick="openTab('rhode','rhode')">rhode</div>
+                    <div class="dropdown-item" onclick="openTab('jonson','Beuty of jonson')">Beauty of Joseon</div>
+                    <div class="dropdown-item" onclick="openTab('laneige','laneige')">LANEIGE</div>
+                    <div class="dropdown-item" onclick="openTab('olehenriksen','olehenriksen')">OLEHENRIKSEN</div>
+                    <div class="dropdown-item" onclick="openTab('gxve','gxve')">GXVE</div>
+                    <div class="dropdown-item" onclick="openTab('inkey','inkey')">The INKEY</div>
+                    <div class="dropdown-item" onclick="openTab('ordinary','ordinary')">The Ordinary</div>
+                    <div class="dropdown-item" onclick="openTab('charlotte','charlotte')">Charlotte</div>
+                    <div class="dropdown-item" onclick="openTab('one','one')">One Size</div>
+                    <div class="dropdown-item" onclick="openTab('SALE','SALE')">OFERTAS</div>
+                </div>
+            </div>
+
+            <!-- Barra de búsqueda -->
             <input type="text" id="searchInput" class="search-input" placeholder="Buscar por marca o nombre de producto...">
+            <!-- Botones -->
             <button class="search-button" onclick="searchProducts()">Buscar</button>
             <button class="clear-button" onclick="clearSearch()">✖ Limpiar</button>
         </div>
 
-        <div class="tabs">
+        <!--<div class="tabs">
             <button class="tab-button active" onclick="openTab(event, 'nyx')">NYX</button>
             <button class="tab-button" onclick="openTab(event, 'maybelline')">Maybelline</button>
             <button class="tab-button" onclick="openTab(event, 'loreal')">L'Oréal</button>
@@ -47,8 +85,9 @@
             <button class="tab-button" onclick="openTab(event, 'charlotte')">Charlotte</button>
             <button class="tab-button" onclick="openTab(event, 'one')">One Size</button>
             <button class="tab-button" onclick="openTab(event, 'SALE')">OFERTAS</button>
-        </div>
+        </div>-->
 
+        <!-- Contenido de cada pestaña -->
         <div id="nyx" class="tab-content active">
             <h2 class="brand-title">NYX Professional Makeup</h2>
             <div class="products-grid">
@@ -1330,6 +1369,23 @@
             document.getElementById(brandName).classList.add('active');
             evt.currentTarget.classList.add('active');
         }
+
+        function toggleDropdown() {
+        const dropdown = document.getElementById("brandDropdown");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    function openTab(tabId, brandName) {
+        document.getElementById("selectedBrand").textContent = brandName;
+        document.getElementById("brandDropdown").style.display = "none";
+
+        // Ocultar todas las pestañas
+        const tabs = document.querySelectorAll(".tab-content");
+        tabs.forEach(t => t.classList.remove("active"));
+
+        // Mostrar la seleccionada
+        document.getElementById(tabId).classList.add("active");
+    }
 
         // Función de búsqueda
         function searchProducts() {

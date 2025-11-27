@@ -190,7 +190,7 @@ header p {
     transition: opacity 0.3s ease;
 }
 
-.tab-button:hover {
+.tab-button:hover {/* cuando el pulsor esta encima */
     background: white;
     border-color: #667eea;
     color: #667eea;
@@ -199,7 +199,7 @@ header p {
 }
 
 .tab-button.active {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);/* colores del que esta seleccionado */
     color: white;
     border-color: transparent;
     transform: translateY(-2px);
@@ -421,15 +421,24 @@ header p {
     }
 
     .search-container {
-        flex-direction: column;
-        padding: 20px;
+        display: flex;
+        flex-direction: row; /* mantiene todo en fila */
         gap: 10px;
+        flex-wrap: nowrap;   /* evita que bajen */
+        padding: 20px;
+        align-items: center;
     }
 
-    .search-input,
+    .search-input {
+        flex: 1;        /* ocupa todo el espacio restante */
+        min-width: 0;   /* importante para que se reduzca en pantallas pequeñas */
+    }
+
     .search-button,
     .clear-button {
-        width: 100%;
+        flex: 0 0 auto; /* tamaño solo según contenido */
+        width: auto;    /* no ocupan 100% */
+        padding: 10px 14px;
     }
 
     .tabs {
@@ -484,3 +493,65 @@ header p {
         font-size: 1.5em;
     }
 }
+
+
+/* Estilos listas de marcas */
+        .dropdown-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .dropdown-button {
+            flex: 0 1 auto;
+            min-width: 140px;
+            padding: 14px 24px;
+            background: white;
+            border: 2px solid #e5e7eb;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 600;
+            color: #6b7280;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-between; 
+        }
+        .dropdown-content {
+            position: absolute;
+            background-color: white;
+            min-width: 200px;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none; /* oculto por defecto, se muestra con JS */
+            
+            max-height: 300px; /* altura máxima antes de activar scroll */
+            overflow-y: auto;  /* scroll vertical */
+        }
+        .dropdown-item {
+            padding: 12px;
+            border-bottom: 1px solid #b6b5b5; /* borde de las casillas */
+            cursor: pointer;
+        }
+        .dropdown-item:hover {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);/* colores del que esta seleccionado */
+        color: white;
+        border-color: transparent;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35); /* color cuando el pulsor esta encima*/
+        }
+        
+        .tab-button.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);/* colores del que esta seleccionado */
+        color: white;
+        border-color: transparent;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35);
+        }
+
+        

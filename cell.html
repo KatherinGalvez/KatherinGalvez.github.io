@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GLOW ANTIGUA</title>
+    <link rel="icon" href="imagenesf/logo.jpeg" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos del dropdown */
+        .dropdown-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .dropdown-button {
+            padding: 12px 18px;
+            background: #222;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            min-width: 200px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            z-index: 10;
+        }
+        .dropdown-item {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+        .dropdown-item:hover {
+            background: #f3f3f3;
+        }
+
+        /* Estilos de pestañas */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .product-card {
+            padding: 10px;
+            background: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>GLOW ANTIGUA</h1>
+        <p>Explora nuestras marcas y encuentra lo que buscas</p>
+    </header>
+
+    <div class="search-bar-container">
+    <!-- Dropdown de marcas -->
+    <div class="dropdown-container">
+        <button class="dropdown-button" onclick="toggleDropdown()">
+            <span id="selectedBrand">Seleccionar marca</span> ▼
+        </button>
+        <div id="brandDropdown" class="dropdown-content">
+            <div class="dropdown-item" onclick="openTab('nyx','NYX')">NYX</div>
+            <div class="dropdown-item" onclick="openTab('maybelline','Maybelline')">Maybelline</div>
+            <div class="dropdown-item" onclick="openTab('loreal','L\'Oréal')">L'Oréal</div>
+            <div class="dropdown-item" onclick="openTab('elf','e.l.f.')">e.l.f.</div>
+            <!-- resto de marcas -->
+        </div>
+    </div>
+
+    <!-- Barra de búsqueda -->
+    <input type="text" id="searchInput" class="search-input" placeholder="Buscar por marca o nombre de producto...">
+
+    <!-- Botones -->
+    <button class="search-button" onclick="searchProducts()">Buscar</button>
+    <button class="clear-button" onclick="clearSearch()">✖ Limpiar</button>
+</div>
+
+
+    <!-- Contenido de cada pestaña -->
+    <div id="nyx" class="tab-content active">
+        <h2 class="brand-title">NYX Professional Makeup</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image"><img src="imagenesf/nyx1.2.avif" alt="Brillo Lip IV"></div>
+                <div class="product-name">Brillo hidratante con tinta Lip IV</div>
+                <div class="product-description">Brillo hidratante de larga duración de tinta.</div>
+                <div class="product-description">Color: Blush Rush</div>
+                <div class="product-price">Q165.00</div>
+                <span class="product-stock out">Agotado</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="maybelline" class="tab-content">
+        <h2 class="brand-title">Maybelline</h2>
+        <div class="products-grid">
+            <div class="product-card">Fit Me Matte – Q135</div>
+            <div class="product-card">Sky High Mascara – Q145</div>
+        </div>
+    </div>
+
+    <div id="loreal" class="tab-content">
+        <h2 class="brand-title">L'Oréal</h2>
+        <div class="products-grid">
+            <div class="product-card">True Match Foundation – Q150</div>
+            <div class="product-card">Infallible 24h – Q165</div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function toggleDropdown() {
+        const dropdown = document.getElementById("brandDropdown");
+        dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    }
+
+    function openTab(tabId, brandName) {
+        document.getElementById("selectedBrand").textContent = brandName;
+        document.getElementById("brandDropdown").style.display = "none";
+
+        // Ocultar todas las pestañas
+        const tabs = document.querySelectorAll(".tab-content");
+        tabs.forEach(t => t.classList.remove("active"));
+
+        // Mostrar la seleccionada
+        document.getElementById(tabId).classList.add("active");
+    }
+</script>
+</body>
+</html>
